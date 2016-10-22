@@ -12,10 +12,11 @@ temp = ""
 id = ""
 value = ""
 
-Tk().withdraw()
-filepath = askopenfilename()
-data = Definitions.fileToString(filepath)
-
+#Tk().withdraw()
+#filepath = askopenfilename()
+#data = Definitions.fileToString(filepath)
+path = '/Users/alonsolarraguibel/PyCharmProjects/Compilador/TestFiles/Fibonacci.applescript'
+data = Definitions.fileToString(path)
 
 
 for x in range(0, len(data)):
@@ -33,6 +34,7 @@ for x in range(0, len(line)):
                 id = id + line[x][y+i]
                 i = i + 1
             Tables.idVariables.append(id)
+            print Tables.idVariables
             id = ''
         id=''
         if (str(temp) == "="):
@@ -65,12 +67,23 @@ for x in range(0, len(line)):
         if (result[1]==9):
             number = Definitions.lexemCheck(line[x][y+1])
             if not(number[1]==9):
-                tokens.append([str(temp), (result[1])])
+                tokens.append([x, str(temp), (result[1])])
                 temp = ""
         elif(result[0] == True):
-            tokens.append([str(temp),(result[1])])
-            temp = ""
+            if result[1] != 0:
+                tokens.append([x, str(temp),(result[1])])
+                temp = ""
+            else:
+                print "two possible tokens"
         elif((Definitions.ImpossibleLexeme(temp))):
             temp = ""
 
-AnalizadorSintactico.AnalizadorSintactico(tokens);
+index = 0
+Tokens = []
+while(index<len(line)):
+    Tokens.append([])
+    for x in range(len(tokens)):
+        if tokens[x][0] == index:
+            Tokens[index].append([tokens[x][1],tokens[x][2]])
+    index = index+1
+AnalizadorSintactico.AnalizadorSintactico(Tokens)

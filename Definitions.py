@@ -19,35 +19,55 @@ def fileToString (filepath):
 
 #CHECK IF A WORD IS RESERVED
 def lexemCheck(lexem):
+    count = 0
+    id = 0
     if lexem in Tables.reservedWords:
-        return [True,1]
-    elif lexem in Tables.comparison:
-        return [True,2]
-    elif lexem in Tables.brackets:
-        return [True,3]
-    elif lexem in Tables.assignation:
-        return [True,4]
-    elif lexem in Tables.separators:
-        return [True,5]
-    elif lexem in Tables.terminators:
-        return [True,6]
-    elif lexem in Tables.idVariables:
-        return [True,7]
-    elif strRegex.match(lexem):
-        return [True,8]
-    elif numRegex.match(lexem):
-        return [True,9]
-    elif lexem in Tables.values:
-        return [True, 10]
+        count = count+1
+        id = 1
+    if lexem in Tables.comparison:
+        count = count+1
+        id = 2
+    if lexem in Tables.brackets:
+        count = count+1
+        id = 3
+    if lexem in Tables.assignation:
+        count = count+1
+        id = 4
+    if lexem in Tables.separators:
+        count = count+1
+        id = 5
+    if lexem in Tables.terminators:
+        count = count+1
+        id = 6
+    if lexem in Tables.idVariables:
+        count = count+1
+        id = 7
+    if strRegex.match(lexem):
+        count = count+1
+        id = 8
+    if numRegex.match(lexem):
+        count = count+1
+        id = 9
+    if lexem in Tables.values:
+        count = count+1
+        id = 10
+    if count == 1:
+        return [True,id]
+    elif count>1:
+        print "count >1: " +lexem
+        return [True,0]
     else:
         return [False,0]
+
 
 #CHECK IF A WORD IS a possible RESERVED
 def ImpossibleLexeme(word):
     flag = False
+    count = 0
 
     for x in range(0,len(Tables.reservedWords)):
         if word in Tables.reservedWords[x]:
+            count = count+1
             flag = True
         else:
             if not (flag):
@@ -55,6 +75,7 @@ def ImpossibleLexeme(word):
 
     for x in range(0,len(Tables.idVariables)):
         if word in Tables.idVariables[x]:
+            count = count + 1
             flag = True
         else:
             if not (flag):
@@ -62,6 +83,7 @@ def ImpossibleLexeme(word):
 
     for x in range(0,len(Tables.values)):
         if word in Tables.values[x]:
+            count = count + 1
             flag = True
         else:
             if not (flag):
