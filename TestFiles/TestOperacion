@@ -1,0 +1,10 @@
+MAIN(){
+VAR i.
+VAR j.
+VAR result.
+i=5.
+j=5.
+CON(i==j){
+result=SUM(j,i).
+}
+}

@@ -54,7 +54,6 @@ def lexemCheck(lexem):
     if count == 1:
         return [True,id]
     elif count>1:
-        print "count >1: " +lexem
         return [True,0]
     else:
         return [False,0]

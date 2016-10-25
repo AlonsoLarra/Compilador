@@ -4,6 +4,8 @@ VAR first.
 VAR second.
 VAR index.
 VAR next.
+VAR palabra.
+palabra='hola'.
 n=5.
 first=0.
 second=1.

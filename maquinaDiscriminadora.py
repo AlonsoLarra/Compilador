@@ -15,7 +15,16 @@ value = ""
 #Tk().withdraw()
 #filepath = askopenfilename()
 #data = Definitions.fileToString(filepath)
-path = '/Users/alonsolarraguibel/PyCharmProjects/Compilador/TestFiles/Fibonacci.applescript'
+
+#try:
+#     path = '../Compilador/TestFiles/Fibonacci.applescript'
+#     data = Definitions.fileToString(path)
+#except:
+#     path = '../MaquinaDiscriminadora/TestFiles/Fibonacci.applescript'
+#    data = Definitions.fileToString(path)
+
+
+path = '../MaquinaDiscriminadora/TestFiles/TestOperacion'
 data = Definitions.fileToString(path)
 
 
@@ -34,7 +43,6 @@ for x in range(0, len(line)):
                 id = id + line[x][y+i]
                 i = i + 1
             Tables.idVariables.append(id)
-            print Tables.idVariables
             id = ''
         id=''
         if (str(temp) == "="):
@@ -45,6 +53,10 @@ for x in range(0, len(line)):
                 while (line[x][y + i] != "."):
                     id = id + line[x][y+i]
                     i = i + 1
+                    lex = Definitions.lexemCheck(id)
+                    if(lex[0]):
+                        id=''
+                        break
                 number = Definitions.lexemCheck(id)
                 if not number[1] == 9:
                     Tables.values.append(id)
@@ -64,26 +76,32 @@ for x in range(0, len(line)):
                 temp = ""
 
         result = Definitions.lexemCheck(temp)
+
+        try:
+            impossibleLexem = Definitions.ImpossibleLexeme(temp + line[x][y + 1])
+        except:
+            impossibleLexem = True
+
         if (result[1]==9):
             number = Definitions.lexemCheck(line[x][y+1])
             if not(number[1]==9):
                 tokens.append([x, str(temp), (result[1])])
                 temp = ""
-        elif(result[0] == True):
-            if result[1] != 0:
-                tokens.append([x, str(temp),(result[1])])
-                temp = ""
-            else:
-                print "two possible tokens"
+        elif(result[0] == True and impossibleLexem == True ):
+            tokens.append([x, str(temp),(result[1])])
+            temp = ""
         elif((Definitions.ImpossibleLexeme(temp))):
             temp = ""
 
 index = 0
 Tokens = []
+justTokens = []
 while(index<len(line)):
     Tokens.append([])
+    justTokens.append([])
     for x in range(len(tokens)):
         if tokens[x][0] == index:
             Tokens[index].append([tokens[x][1],tokens[x][2]])
+            justTokens[index].append(tokens[x][2])
     index = index+1
-AnalizadorSintactico.AnalizadorSintactico(Tokens)
+AnalizadorSintactico.AnalizadorSintactico(Tokens,justTokens)
