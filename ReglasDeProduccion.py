@@ -19,6 +19,5 @@ reglasDeProduccion = [
     ["operacionBasica",[1,3,9,7,3,6]],
     ["operacionBasica",[1,3,7,9,3,6]],
     ["operacionBasica",[1,3,9,9,3,6]],
-
 ]
 

@@ -16,16 +16,19 @@ value = ""
 #filepath = askopenfilename()
 #data = Definitions.fileToString(filepath)
 
-#try:
-#     path = '../Compilador/TestFiles/Fibonacci.applescript'
+try:
+     path = '../Compilador/TestFiles/Fibonacci.applescript'
+     data = Definitions.fileToString(path)
+except:
+    path = '../MaquinaDiscriminadora/TestFiles/Fibonacci.applescript'
+    data = Definitions.fileToString(path)
+
+# try:
+#     path = '../MaquinaDiscriminadora/TestFiles/TestOperacion'
 #     data = Definitions.fileToString(path)
-#except:
-#     path = '../MaquinaDiscriminadora/TestFiles/Fibonacci.applescript'
-#    data = Definitions.fileToString(path)
-
-
-path = '../MaquinaDiscriminadora/TestFiles/TestOperacion'
-data = Definitions.fileToString(path)
+# except:
+#     path = '../Compilador/TestFiles/TestOperacion'
+#     data = Definitions.fileToString(path)
 
 
 for x in range(0, len(data)):
