@@ -21,3 +21,10 @@ reglasDeProduccion = [
     ["operacionBasica",[1,3,9,9,3,6]],
 ]
 
+Derivaciones = {
+    'declaracion': [1,2,6],
+    'asignacion': [1,2,7],
+    'ciclo':[1,2,3],
+    'condicional':[1,2,4],
+    'operacionBasica': [1,2,8]
+}
