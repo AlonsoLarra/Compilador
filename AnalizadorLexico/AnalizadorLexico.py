@@ -1,10 +1,6 @@
+from AnalizadorSintactico import AnalizadorSintactico
 import Definitions
-from Tkinter import Tk
-from tkFileDialog import askopenfilename
 import Tables
-import AnalizadorSintactico
-import re
-
 
 line = []
 tokens = []
@@ -17,10 +13,9 @@ value = ""
 #data = Definitions.fileToString(filepath)
 
 try:
-     path = '../Compilador/TestFiles/Fibonacci.applescript'
-     data = Definitions.fileToString(path)
+     data = Definitions.fileToString('/Users/alonsolarra/PycharmProjects/MaquinaDiscriminadora/TestFiles/Fibonacci.applescript')
 except:
-    path = '../MaquinaDiscriminadora/TestFiles/Fibonacci.applescript'
+    path = '../MaquinaDiscriminadora/Fibonacci.applescript'
     data = Definitions.fileToString(path)
 
 # try:
@@ -86,7 +81,7 @@ for x in range(0, len(line)):
             impossibleLexem = True
 
         if (result[1]==9):
-            number = Definitions.lexemCheck(line[x][y+1])
+            number = Definitions.lexemCheck(line[x][y + 1])
             if not(number[1]==9):
                 tokens.append([x, str(temp), (result[1])])
                 temp = ""
@@ -107,4 +102,5 @@ while(index<len(line)):
             Tokens[index].append([tokens[x][1],tokens[x][2]])
             justTokens[index].append(tokens[x][2])
     index = index+1
-AnalizadorSintactico.AnalizadorSintactico(Tokens,justTokens)
+
+AnalizadorSintactico.AnalizadorSintactico(Tokens, justTokens)

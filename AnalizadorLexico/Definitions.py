@@ -1,9 +1,7 @@
-from numpy import *
 import csv
-import Tables
 import re
 
-
+import Tables
 
 possibleStrRegex =  re.compile(r'\"(.+?)')
 strRegex = re.compile(r'\"(.+?)\"')
@@ -64,7 +62,7 @@ def ImpossibleLexeme(word):
     flag = False
     count = 0
 
-    for x in range(0,len(Tables.reservedWords)):
+    for x in range(0, len(Tables.reservedWords)):
         if word in Tables.reservedWords[x]:
             count = count+1
             flag = True
@@ -72,7 +70,7 @@ def ImpossibleLexeme(word):
             if not (flag):
                 flag = False
 
-    for x in range(0,len(Tables.idVariables)):
+    for x in range(0, len(Tables.idVariables)):
         if word in Tables.idVariables[x]:
             count = count + 1
             flag = True
@@ -80,7 +78,7 @@ def ImpossibleLexeme(word):
             if not (flag):
                 flag = False
 
-    for x in range(0,len(Tables.values)):
+    for x in range(0, len(Tables.values)):
         if word in Tables.values[x]:
             count = count + 1
             flag = True

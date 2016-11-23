@@ -1,16 +1,12 @@
 MAIN(){
-VAR n.
 VAR first.
 VAR second.
 VAR index.
 VAR next.
-VAR palabra.
-palabra='hola'.
-n=5.
 first=0.
 second=1.
 index=0.
-CYC(n){
+CYC(5){
 CON(index<2){
 next=index.
 }
